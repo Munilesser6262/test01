@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クイズサイト - Quiz Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-container">
+            <h1>クイズゲーム</h1>
+            <div id="quiz-content">
+                <div id="question-container">
+                    <h2 id="question">質問がここに表示されます</h2>
+                    <div id="answer-buttons" class="answer-buttons">
+                        <!-- 答えのボタンがここに動的に追加されます -->
+                    </div>
+                </div>
+                <div id="controls">
+                    <button id="start-btn" class="btn">スタート</button>
+                    <button id="next-btn" class="btn hide">次へ</button>
+                </div>
+            </div>
+            <div id="score-container" class="hide">
+                <h2>結果</h2>
+                <p id="result-message"></p>
+                <p id="final-score"></p>
+                <button id="restart-btn" class="btn">もう一度</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
