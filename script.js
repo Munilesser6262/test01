@@ -56,6 +56,7 @@ const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
 const quizContent = document.getElementById('quiz-content');
 const scoreContainer = document.getElementById('score-container');
+const resultMessageElement = document.getElementById('result-message');
 const finalScoreElement = document.getElementById('final-score');
 const restartButton = document.getElementById('restart-btn');
 
@@ -95,9 +96,7 @@ function showQuestion() {
 }
 
 function resetState() {
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-    }
+    answerButtonsElement.innerHTML = '';
 }
 
 function selectAnswer(answer, button) {
@@ -145,7 +144,8 @@ function showResults() {
         message = '頑張りましょう！📚';
     }
     
-    finalScoreElement.textContent = `${message}\n\nスコア: ${score}/${quizData.length} (${percentage}%)`;
+    resultMessageElement.textContent = message;
+    finalScoreElement.textContent = `スコア: ${score}/${quizData.length} (${percentage}%)`;
 }
 
 function restartQuiz() {
