@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数字当てゲーム</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: system-ui, sans-serif;
+        background: #f5f7fb;
+      }
+      .card {
+        width: min(92vw, 460px);
+        background: #fff;
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+      h1 {
+        margin-top: 0;
+        font-size: 1.4rem;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+      }
+      input,
+      button {
+        font-size: 1rem;
+        padding: 10px 12px;
+      }
+      input {
+        flex: 1;
+      }
+      #message {
+        margin-top: 12px;
+        min-height: 1.5em;
+        font-weight: 600;
+      }
+      #tries {
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>数字当てゲーム</h1>
+      <p>1〜100 の数字を当ててください。</p>
+      <div class="row">
+        <input id="guess" type="number" min="1" max="100" placeholder="数字を入力" />
+        <button id="play">予想する</button>
+      </div>
+      <p id="message"></p>
+      <p id="tries">試行回数: 0</p>
+      <button id="reset">リセット</button>
+    </main>
+
+    <script>
+      let answer = Math.floor(Math.random() * 100) + 1;
+      let count = 0;
+
+      const guessInput = document.getElementById("guess");
+      const playButton = document.getElementById("play");
+      const resetButton = document.getElementById("reset");
+      const message = document.getElementById("message");
+      const tries = document.getElementById("tries");
+
+      function resetGame() {
+        answer = Math.floor(Math.random() * 100) + 1;
+        count = 0;
+        message.textContent = "";
+        tries.textContent = "試行回数: 0";
+        guessInput.value = "";
+        guessInput.focus();
+      }
+
+      function checkGuess() {
+        const value = Number(guessInput.value);
+        if (!Number.isInteger(value) || value < 1 || value > 100) {
+          message.textContent = "1〜100 の整数を入力してください。";
+          return;
+        }
+
+        count += 1;
+        tries.textContent = `試行回数: ${count}`;
+
+        if (value === answer) {
+          message.textContent = `正解！ ${count} 回で当てました 🎉`;
+        } else if (value < answer) {
+          message.textContent = "もっと大きいです。";
+        } else {
+          message.textContent = "もっと小さいです。";
+        }
+      }
+
+      playButton.addEventListener("click", checkGuess);
+      guessInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") checkGuess();
+      });
+      resetButton.addEventListener("click", resetGame);
+    </script>
+  </body>
+</html>
