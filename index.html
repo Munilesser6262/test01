@@ -99,7 +99,10 @@
 
       playButton.addEventListener("click", checkGuess);
       guessInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") checkGuess();
+        if (event.key === "Enter") {
+          event.preventDefault();
+          checkGuess();
+        }
       });
       resetButton.addEventListener("click", resetGame);
     </script>
